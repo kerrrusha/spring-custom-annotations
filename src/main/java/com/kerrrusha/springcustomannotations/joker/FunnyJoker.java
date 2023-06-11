@@ -4,6 +4,7 @@ import com.kerrrusha.springcustomannotations.annotation.InjectRandomInt;
 import com.kerrrusha.springcustomannotations.annotation.InjectRandomJoke;
 import com.kerrrusha.springcustomannotations.annotation.PostProxiesCreated;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.Setter;
 
 import static com.kerrrusha.springcustomannotations.SpringCustomAnnotationsApplication.logApplicationContextCreated;
@@ -13,7 +14,7 @@ import static java.util.Objects.nonNull;
 public class FunnyJoker implements Joker {
 
     @InjectRandomInt(from = 1, to = 5)
-    private int repeat;
+    private int repeatJokeCount;
 
     @InjectRandomJoke
     private String joke;
@@ -25,6 +26,10 @@ public class FunnyJoker implements Joker {
         System.out.println();
     }
 
+    /**
+     * At Phase II constructor we can access fields,
+     * that must be initialized by Spring or in Phase I constructor
+     */
     @PostConstruct
     public void init() {
         System.out.println("Constructor Phase II");
@@ -33,12 +38,21 @@ public class FunnyJoker implements Joker {
         System.out.println();
     }
 
+    /**
+     * Only at Phase III constructor we can access annotations, that uses proxies
+     * (e.g @Transactional)
+    */
     @PostProxiesCreated
     public void lateInit() {
         System.out.println("Constructor Phase III");
         logInnerFieldsAreInitialized();
         logApplicationContextCreated();
         System.out.println();
+    }
+
+    @PreDestroy
+    public void destructor() {
+        System.out.println("I'm being destroyed...(");
     }
 
     private void logInnerFieldsAreInitialized() {
@@ -51,7 +65,7 @@ public class FunnyJoker implements Joker {
 
     @Override
     public void sayJoke() {
-        for (int i = 0; i < repeat; i++) {
+        for (int i = 0; i < repeatJokeCount; i++) {
             System.out.println(joke);
         }
     }
