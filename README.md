@@ -3,7 +3,7 @@ Implementation of custom annotations in Spring and their post processors - @Inje
 
 ### Console output:
 
-```sh
+```
 Constructor Phase I
 Inner fields are initialized: false
 Application context created: false
