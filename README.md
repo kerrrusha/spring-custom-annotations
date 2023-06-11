@@ -1,5 +1,6 @@
 # spring-custom-annotations
-Implementation of custom annotations in Spring and their post processors - @InjectRandomInt and @InjectRandomJoke. Also implemented three-phase constructors, adde destructor and tracked context and bean states during each phase.
+Implementation of custom annotations in Spring and their post processors - @InjectRandomInt and @InjectRandomJoke. 
+Also implemented three-phase constructors, added destructor and tracked context and bean states during each phase.
 
 ### Console output:
 
