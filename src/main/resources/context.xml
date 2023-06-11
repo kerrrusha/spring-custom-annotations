@@ -13,6 +13,7 @@
     <!-- Bean definitions -->
     <bean class="com.kerrrusha.springcustomannotations.annotation.postprocessor.InjectRandomIntAnnotationBeanPostProcessor"/>
     <bean class="com.kerrrusha.springcustomannotations.annotation.postprocessor.InjectRandomJokeAnnotationBeanPostProcessor"/>
+    <bean class="com.kerrrusha.springcustomannotations.annotation.postprocessor.PostProxiesCreatedInvokerContentListener"/>
 
     <bean id="funnyJoker" class="com.kerrrusha.springcustomannotations.joker.FunnyJoker">
         <property name="joke" value="What's the difference between a snowman and a snowwoman? Snowballs!"/>
